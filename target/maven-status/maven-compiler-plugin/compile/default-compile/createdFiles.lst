@@ -1,0 +1,4 @@
+facebookbasePage\FacebookBasePage.class
+facebookconfig\Settings.class
+pages\FacebookLoginPage.class
+facebookconfig\ConfigReader.class
