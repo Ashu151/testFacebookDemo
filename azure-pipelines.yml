@@ -1,22 +1,23 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
 - master
 
 pool:
-  name: 'Default'
+  name: 'Default'  # Use your self-hosted agent pool here
 
 steps:
+# Step 1: Set JAVA_HOME to your JDK directory (if needed, this step is optional if JAVA_HOME is already configured on the agent)
+- script: |
+    echo "##vso[task.setvariable variable=JAVA_HOME]$(Agent.ToolsDirectory)/jdk"
+  displayName: 'Set JAVA_HOME environment variable'
+
+# Step 2: Build with Maven using the JDK 11
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
+    javaHomeOption: 'Path'  # Automatically use the JAVA_HOME from the environment
+    jdkVersionOption: '1.11'  # Explicitly specify JDK 11 (optional, since JAVA_HOME is already set)
+    jdkArchitectureOption: 'x64'  # Ensure x64 architecture is used
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
