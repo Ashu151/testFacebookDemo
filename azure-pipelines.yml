@@ -2,17 +2,19 @@ trigger:
 - none
 
 pool:
-  name: 'Default'  # Use your self-hosted agent pool here
+  name: 'Default'
 
 steps:
-# Step 1: Set up Java 17
+# Step 1: Use the pre-installed Java (JDK 21) from the custom path
 - task: JavaToolInstaller@1
   inputs:
-    versionSpec: '21'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+    versionSpec: '21'  # Specify the Java version you want to use
+    jdkArchitectureOption: 'x64'  # Architecture
+    jdkSourceOption: 'PreInstalled'  # Use the pre-installed JDK
+    javaHomeOption: 'Custom'  # Specify custom path to JDK
+    customJavaHome: 'C:\\Program Files\\Java\\jdk-21'  # Provide the full path to your JDK
 
-# Step 2: Build with Maven using the JDK 17
+# Step 2: Build with Maven using the JDK
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
