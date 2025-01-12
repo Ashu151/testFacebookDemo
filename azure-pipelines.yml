@@ -1,24 +1,15 @@
 trigger:
-- none
+  - none
 
 pool:
   name: 'Default'  # Use your self-hosted agent pool
 
 steps:
-# Step 1: Set Java home to the pre-installed JDK (JDK 21)
-- task: JavaToolInstaller@1
-  inputs:
-    versionSpec: '21'  # Specify the version of JDK to use (JDK 21)
-    jdkArchitectureOption: 'x64'  # Use x64 architecture
-    jdkSourceOption: 'PreInstalled'  # Use the pre-installed JDK
-    javaHomeOption: 'Custom'  # Specify the custom path
-    customJavaHome: 'C:\\Program Files\\Java\\jdk-21'  # The JAVA_HOME path to your JDK
-
-# Step 2: Build with Maven using the specified JDK
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'clean test'
+  # Step : Build with Maven using the specified JDK
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Xmx3072m'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      goals: 'clean test'
