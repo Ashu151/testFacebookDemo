@@ -11,9 +11,7 @@ steps:
       versionSpec: '21'
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'LocalDirectory'
-      jdkFile: 'C:\Program Files\Java\jdk-21'
-      jdkDestinationDirectory: 'C:\Program Files\Java\jdk-21'
-      cleanDestinationDirectory: true
+
 
   # Step 2: Build with Maven using the JDK
   - task: Maven@3
