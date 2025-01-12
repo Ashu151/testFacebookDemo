@@ -10,7 +10,7 @@ steps:
   inputs:
     versionSpec: '17'
     jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+    jdkSourceOption: 'AzureStorage'
 
 # Step 2: Build with Maven using the JDK 17
 - task: Maven@3
